@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 for image in $(cat /app/images.dat); do
 	echo "pulling ${image} ..."
@@ -13,7 +13,6 @@ for image in $(cat /app/images.dat); do
 	else
 		crane ls $(echo "${image}" | sed 's/:.*//g')
 		crane pull ${image} tmp.tgz && rm -f tmp.tgz
-
 	fi
 	echo "none"
 done

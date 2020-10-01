@@ -1,6 +1,8 @@
 #!/bin/bash
 
-for image in $(cat /app/images.dat); do
+# read images in random order
+# avoid always getting rate-limited at the same images on dockerhub if the pull order stays always the same
+for image in $(shuf /app/images.dat); do
 	echo "pulling ${image} ..."
 	if [[ $(echo "${image}" | grep sha256) ]]; then
 		image_base=$(echo "${image}" | sed 's/\(.*\)@sha256:.*/\1/g')
